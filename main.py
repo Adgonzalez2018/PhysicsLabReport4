@@ -33,7 +33,7 @@ pyplot.errorbar(x, y, yerr=range_1, fmt='o', ecolor='navy', elinewidth=1, capsiz
 pyplot.plot(x, m*x+b, color="green")
 # labels
 pyplot.xlabel('Voltage (v)')
-pyplot.ylabel('R^2 (cm^2)')
+pyplot.ylabel('R^2 (cm)')
 pyplot.show()
 
 

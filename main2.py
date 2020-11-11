@@ -10,7 +10,7 @@ data = data[["v2", "r2"]]
 
 
 # going to use r^2 vs v graph
-x, y = data["v2"], data["r2"]
+y, x = data["v2"], data["r2"]
 # get max and min to find range for I1
 min_y_value = np.min(y)
 max_y_value = np.max(y)
@@ -20,14 +20,20 @@ max_x_value = np.max(x)
 
 range = ((max_y_value) - (min_y_value)) / 2
 
+y1 = min_y_value - range
+y2 = max_y_value + range
+
+y3 = min_y_value + range
+y4 = max_y_value - range
+
 # these values are from the data csv, using them and applying uncertainty
 # points 1 & 2 are for the steepest line
-point1 = [min_x_value, min_y_value - range]
-point2 = [max_x_value, max_y_value + range]
+point1 = [min_x_value, y1]
+point2 = [max_x_value, y2]
 
 # points 3 & 4 are for the shallowest line
-point3 = [min_x_value, min_y_value + range]
-point4 = [max_x_value, max_y_value - range]
+point3 = [min_x_value, y3]
+point4 = [max_x_value, y4]
 
 steep_x_values = [point1[0], point2[0]]
 steep_y_values = [point1[1], point2[1]]
@@ -37,9 +43,17 @@ shallow_y_values = [point3[1], point4[1]]
 
 m, b = np.polyfit(x, y, 1)
 
+m_steep = (y2 - y1) / (max_x_value - min_x_value)
+m_shallow = (y3 - y4) / (max_x_value - min_x_value)
+
+slope_range = (m_steep - m_shallow) / 2
+
 # displaying uncertainty and slope
-print("Range/Uncertainty for Current I = 1.04 A: ", range)
+print("Range/Uncertainty for Current I = 2.03 A: ", range)
 print("Slope: ", m)
+print("Steepest Slope: ",  m_steep)
+print("Shallowest Slope: ", m_shallow)
+print("Slope Range/Uncertainty: ", slope_range)
 
 # putting r^2 and voltage into graph
 style.use("grayscale")

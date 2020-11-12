@@ -3,18 +3,20 @@ _____________________
 I = 1.03 A 
 (Approximate Results)
 _____________________
-Slope = 10.90
-Steep Slope = 20.65
-Shallow Slope = 0
-Slope Range = 10.325
-Radius Range = 2.42 cm
+Slope = 10.90 v/cm^2
+Steep Slope = 20.65 v/cm^2
+Shallow Slope = 0 v/cm^2
+Slope Range = 10.325 v/cm^2
+Radius Range = 2.42 cm^2
+Electron-to-mass Ratio = 3.314e11 c/kg
 _____________________
 I = 2.04 A 
 (Approximate Results)
 _____________________
-Slope = 20.95
-Steep Slope = 62.95
-Shallow Slope = 0
-Slope Range = 31.27
-Radius Range = 2.4 cm 
+Slope = 20.95 v/cm^2
+Steep Slope = 62.95 v/cm^2
+Shallow Slope = 0 v/cm^2
+Slope Range = 31.27 v/cm^2
+Radius Range = 2.4 cm^2 
+Electron-to-mass Ratio = 2.391e11 c/kg
 _____________________

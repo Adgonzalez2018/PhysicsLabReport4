@@ -3,14 +3,18 @@ from matplotlib import style
 import numpy as np
 import pandas as pd
 
+# global vars
+B = 3.04 * 10**-7
+I1 = 1.04
+I2 = 2.03
+
 data = pd.read_csv("Physics-Lab-Data.csv", sep=",")
 # v1 and r1 are for current = 1.04A r1 is squared
 # v1 and r2 are for current = 2.03A r2 is squared
 data = data[["v1", "r1"]]
 
-
 # going to use r^2 vs v graph
-y, x = data["v1"], data["r1"]
+x, y = data["v1"], data["r1"]
 # get max and min to find range for I1
 min_y_value = np.min(y)
 max_y_value = np.max(y)
@@ -19,7 +23,6 @@ min_x_value = np.min(x)
 max_x_value = np.max(x)
 
 range = ((max_y_value) - (min_y_value)) / 2
-
 
 y1 = min_y_value - range
 y2 = max_y_value + range
@@ -36,6 +39,7 @@ point2 = [max_x_value, y2]
 point3 = [min_x_value, y3]
 point4 = [max_x_value, y4]
 
+# putting points into an array to plot them the lines in to matplotlib
 steep_x_values = [point1[0], point2[0]]
 steep_y_values = [point1[1], point2[1]]
 
@@ -44,18 +48,14 @@ shallow_y_values = [point3[1], point4[1]]
 
 m, b = np.polyfit(x, y, 1)
 
-# calculating steep slope and shallow slope
-m_steep = (y2 - y1) / (max_x_value - min_x_value)
-m_shallow = (y3 - y4) / (max_x_value - min_x_value)
 
-slope_range = (m_steep - m_shallow) / 2
+# calculating steep slope and shallow slope values to put get range/uncertainty
+m_Steep = (y2 - y1) / (max_x_value - min_x_value)
+m_Shallow = (y3 - y4) / (max_x_value - min_x_value)
+slope_range = (m_Steep - m_Shallow) / 2
 
-
-print("Range/Uncertainty for Current I = 1.04 A: ", range)
-print("Slope: ", m)
-print("Steepest Slope: ",  m_steep)
-print("Shallowest Slope: ", m_shallow)
-print("Slope Range/Uncertainty: ", slope_range)
+# calculating electron to mass ratio
+ratio = (m) / (B * I1**2)
 
 # putting r^2 and voltage into graph
 style.use("grayscale")
@@ -78,5 +78,13 @@ pyplot.plot(shallow_x_values, shallow_y_values, color="red")
 pyplot.xlabel('Voltage (v)')
 pyplot.ylabel('R^2 (cm^2)')
 pyplot.show()
+
+# display
+print("Range/Uncertainty for radius: ", range)
+print("Slope: ", m)
+print("Steepest Slope: ",  m_Steep)
+print("Shallowest Slope: ", m_Shallow)
+print("Slope Range/Uncertainty: ", slope_range)
+print("electron-to-mass ratio: ", ratio)
 
 
